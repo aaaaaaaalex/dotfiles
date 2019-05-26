@@ -1,5 +1,5 @@
 # user functions
-export PS1="\[\e[36m\]\u\[\e[m\]\[\e[35m\]\W\[\e[m\] ->"
+export PS1="\[$(tput bold)\]\[\033[38;5;13m\]\u\[$(tput sgr0)\]\[\033[38;5;14m\]\W\[$(tput sgr0)\]\[\033[38;5;11m\]⮕\[$(tput sgr0)\] "
 
 
 
