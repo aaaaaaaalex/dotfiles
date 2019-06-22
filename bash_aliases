@@ -14,3 +14,4 @@ kill_discord_shit () {
 
 alias dicksword="kill_discord_shit"
 alias gpu-usage="watch -n 0.5 nvidia-smi"
+alias bsrc="source ~/.bashrc"
