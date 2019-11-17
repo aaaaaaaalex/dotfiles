@@ -15,7 +15,7 @@ esac
 # CUSTOM PROMPT
 #
 PROMPT_COMMAND='GIT_BRANCH=$(git branch 2>/dev/null | grep "*" | tr -d "* ");\
-PS1="\[$(tput bold)\]\[\033[38;5;13m\]\u\[$(tput sgr0)\]\[\033[38;5;14m\](\W)\[$(tput sgr0)\]\[\033[38;5;11m\]|$GIT_BRANCH>\[$(tput sgr0)\] ";'
+PS1="\[$(tput bold)\]\[\033[38;5;13m\]\u\[$(tput sgr0)\]\[\033[38;5;14m\](\W)\[$(tput sgr0)\]\[\033[38;5;11m\]$GIT_BRANCH>\[$(tput sgr0)\] ";'
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
