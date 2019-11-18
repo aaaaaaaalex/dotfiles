@@ -11,6 +11,29 @@ esac
 
 # user functions
 
+# very important reality-bending variables
+SET_PROMPT_COLOR(){
+  printf "\033[${1}m"
+}
+export COLOR_RESET='0' # No Color
+export COLOR_BLACK='0;30'
+export COLOR_LIGHT_GRAY='0;37'
+export COLOR_DARK_GRAY='1;30'
+export COLOR_RED='0;31'
+export COLOR_LIGHT_RED='1;31'
+export COLOR_GREEN='0;32'
+export COLOR_LIGHT_GREEN='1;32'
+export COLOR_BROWN='0;33'
+export COLOR_YELLOW='1;33'
+export COLOR_BLUE='0;34'
+export COLOR_LIGHT_BLUE='1;34'
+export COLOR_PURPLE='0;35'
+export COLOR_LIGHT_PURPLE='1;35'
+export COLOR_CYAN='0;36'
+export COLOR_LIGHT_CYAN='1;36'
+export COLOR_WHITE='1;37'
+export SET_PROMPT_COLOR=SET_PROMPT_COLOR
+
 #
 # CUSTOM PROMPT
 #
