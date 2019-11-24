@@ -10,6 +10,8 @@ esac
 
 
 # user functions
+export PATH=$PATH:$(pwd)/bin
+
 
 # very important reality-bending variables
 SET_PROMPT_COLOR(){
