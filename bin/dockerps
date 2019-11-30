@@ -6,7 +6,9 @@ cyan=$(spc CYAN)
 blue=$(spc BLUE)
 lightblue=$(spc BRIGHT_BLUE)
 formatString="{{printf \"${lightblue}%-30s ${cyan}%-30s %s\" .Names .Ports .Status}}"
+reset=$(spc RESET)
 
 printf "${lightblue}%-30s %-30s %s\n" "Name" "Ports" "Status"
 docker ps -a --format="${formatString}"
+printf "${reset}"
 
