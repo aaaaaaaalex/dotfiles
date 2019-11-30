@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# concatenate the output of two programs
+# doesn't work with programs that take control of the output buffer (yet)
+# I mainly want this for watching more than one command in the same terminal
+
+printf "$($1)\n$($2)\n";
+
