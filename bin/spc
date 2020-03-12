@@ -1,4 +1,11 @@
 #! /bin/bash
+
+###
+# `spc` (select prompt colour)
+# `change the colour of your bash prompt, or use the colour definitions in another script`
+# `this is basically utility script for easy colour-formatting (see `dockerps`)`
+###
+
 declare -A colors=( \
   ["BLACK"]="0;30"\
   ["LIGHT_GREY"]="0;37"\

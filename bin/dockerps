@@ -1,10 +1,16 @@
 #! /bin/bash
 
-# prettier docker ps
-# SET_PROMPT_COLOR and COLOR vars come from custom bashrc{
+###
+# `dockerps` - prettier docker ps
+# Go formatting is weird and I haven't properly learned it, so this takes the hassle out of easily reading just the vars you want
+###
+
+# SET_PROMPT_COLOR and COLOR vars come from our Set Prompt Colo(u)r scripp
 cyan=$(spc CYAN)
 blue=$(spc BLUE)
 lightblue=$(spc BRIGHT_BLUE)
+
+# what even is this templatingffffffffff
 formatString="{{printf \"${lightblue}%-30s ${cyan}%-30s %s\" .Names .Ports .Status}}"
 reset=$(spc RESET)
 
