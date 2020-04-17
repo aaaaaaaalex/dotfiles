@@ -11,4 +11,9 @@ alias diff="diff --color"
 alias search="ag -ig"
 alias searchhere="ag --norecurse -i"
 
+# git and docker utility
+alias gitpush='git push || git push --set-upstream origin $(git branch | grep "*" | sed "s/* //")'
+alias dr="docker restart"
+alias dl="docker logs"
+
 alias work="cd ~/Documents/work/website-wordpress"
