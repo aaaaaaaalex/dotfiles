@@ -14,4 +14,4 @@ alias searchhere="ag --norecurse -i"
 alias work="cd ~/Documents/work/website-wordpress"
 
 # who manually sets new upstream branches?
-alias gitpush="git push || git push --set-upstream origin $current_branch"
+alias gitpush="git push || git push --set-upstream origin $(git symbolic-ref --short HEAD 2>/dev/null)"
