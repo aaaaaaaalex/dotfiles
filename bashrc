@@ -9,6 +9,9 @@ case $- in
 esac
 
 
+# Handy vars
+export current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+
 # user functions
 export PATH=$PATH:/home/alex/Documents/override/bash/bin
 

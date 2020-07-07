@@ -12,3 +12,6 @@ alias search="ag -ig"
 alias searchhere="ag --norecurse -i"
 
 alias work="cd ~/Documents/work/website-wordpress"
+
+# who manually sets new upstream branches?
+alias gitpush="git push || git push --set-upstream origin $current_branch"
