@@ -1,4 +1,5 @@
 #!/bin/sh
+alias src="source ~/.bashrc; source ~/.bash_aliases"
 
 alias gpuusage="watch -n 0.5 nvidia-smi"
 alias bsrc="source ~/.bashrc"
