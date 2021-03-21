@@ -230,7 +230,7 @@ bar {
 }
 
 # hide window title bar https://gist.github.com/lirenlin/9892945
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 4
 new_window 1pixel
 hide_edge_borders both
 
@@ -243,3 +243,6 @@ client.placeholder      #E6D7E6 #424141 #FFFFFF #000000   #0C0C0C
 
 client.background       #FFFFFF
 
+# Gaps
+gaps outer 20
+gaps inner 20
