@@ -254,5 +254,5 @@ gaps inner 20
 
 
 # floating status
-for_window [title="i3status"] border none, floating enable, resize set 1360 1, move position 400 1420
+for_window [title="i3status"] border none, floating enable, resize set 1360 1, move position 600 1420
 
