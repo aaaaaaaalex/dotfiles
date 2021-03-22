@@ -9,7 +9,7 @@ case $- in
 esac
 
 # user functions
-export PATH=$PATH:/home/alex/Documents/override/bash/bin
+export PATH=$PATH:/home/$USER/Repositories/dotfiles/bin
 
 #
 # CUSTOM PROMPT
