@@ -1,4 +1,3 @@
-export PATH=$PATH:/usr/local/go/bin
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -11,7 +10,7 @@ case $- in
 esac
 
 # user functions
-export PATH=$PATH:/home/$USER/Repositories/dotfiles/bin
+export PATH=$PATH:/home/$USER/Repositories/dotfiles/bin:/usr/local/go/bin
 
 #
 # CUSTOM PROMPT
