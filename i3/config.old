@@ -30,14 +30,11 @@ Exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 # exec --no-startup-id nm-applet
 
-# set wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-max --image-bg=#ffffff ~/Pictures/desktop.png
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec st
+bindsym $mod+t exec st
 
 # start browser session
 bindsym $mod+b exec brave-browser
@@ -230,13 +227,11 @@ bindsym $mod+r mode "resize"
 #	}
 #}
 
-# i3status but floating
-
 
 default_border pixel 4
 default_floating_border pixel 4
 
-for_window [class="^.*"] border normal
+for_window [class="^.*"] border pixel 4
 hide_edge_borders both
 
 # class			border	backg.	text	indic.	child_border
@@ -245,7 +240,6 @@ client.focused_inactive #424141 #6B7477 #FFFFFF #424141   #424141
 client.unfocused        #424141 #6B7477 #FFFFFF #424141   #424141
 client.urgent           #F5F383 #424141 #FFFFFF #F5F383   #F5F383
 client.placeholder      #E6D7E6 #424141 #FFFFFF #000000   #0C0C0C
-
 client.background       #FFFFFF
 
 # Gaps
@@ -254,5 +248,18 @@ gaps inner 20
 
 
 # floating status
-for_window [title="i3status"] border none, floating enable, resize set 1360 1, move position 600 1420
+for_window [title="i3status"] border none, floating enable, resize set 1360 1, move position 600 1410
+
+# compton
+exec_always --no-startup-id compton -b --config /home/alexoregan/.config/compton/config
+
+
+# set wallpaper
+exec_always --no-startup-id feh --no-fehbg --bg-max --image-bg=#ffffff ~/Pictures/desktop.jpg
+
+# vim scratchpad with super+enter (terminal moved to super+t)
+for_window [class="_vim-scratchpad"] floating enable
+for_window [class="_vim-scratchpad"] resize 600 400
+for_window [class="_vim-scratchpad"] move position mouse
+bindsym $mod+Return exec st -c _vim-scratchpad -e scratchpad
 

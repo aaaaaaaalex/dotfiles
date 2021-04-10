@@ -1,0 +1,7 @@
+#!/bin/sh
+xclip -o > ~/.vimscratchpad
+vim ~/.vimscratchpad
+if [ -e ~/.vimscratchpad ]; then
+	xclip -i -r -selection clipboard < ~/.vimscratchpad
+	rm ~/.vimscratchpad
+fi
