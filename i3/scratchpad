@@ -2,7 +2,7 @@
 # start vim and insert the contents of the current X selection
 # if the vim buffer is saved, its contents will be copied to clipboard
 vim -c startinsert -s <(xclip -o) ~/.vimscratchpad
-if [ -e ~/.vimscratchpad ]; then
-	xclip -i -r -selection clipboard < ~/.vimscratchpad
-	rm ~/.vimscratchpad
-fi
+#if [ -e ~/.vimscratchpad ]; then
+#	xclip -i -r -selection clipboard < ~/.vimscratchpad
+#	rm ~/.vimscratchpad
+#fi

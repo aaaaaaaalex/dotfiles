@@ -8,7 +8,6 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -34,7 +33,7 @@ Exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec st
+bindsym $mod+Return exec st
 
 # start browser session
 bindsym $mod+b exec brave-browser
@@ -261,5 +260,4 @@ exec_always --no-startup-id feh --no-fehbg --bg-max --image-bg=#ffffff ~/Picture
 for_window [class="_vim-scratchpad"] floating enable
 for_window [class="_vim-scratchpad"] resize 600 400
 for_window [class="_vim-scratchpad"] move position mouse
-bindsym $mod+Return exec st -c _vim-scratchpad -e scratchpad
-
+bindsym $mod+c exec st -c _vim-scratchpad -e scratchpad
