@@ -8,3 +8,5 @@ cp ./bash_aliases ~/.bash_aliases
 
 cp ~/.vimrc ./vimrc.backup
 cp ./vimrc ~/.vimrc
+
+chmod 755 ./bin/*
