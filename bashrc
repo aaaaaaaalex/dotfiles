@@ -9,14 +9,19 @@ case $- in
       *) return;;
 esac
 
-# user functions
-export PATH=$PATH:/home/$USER/Repositories/dotfiles/bin:/usr/local/go/bin
+# PATHS
+export PATH=$PATH:/home/$USER/Repositories/dotfiles/bin
 
 #
 # CUSTOM PROMPT
 #
 PROMPT_COMMAND='GIT_BRANCH=$(git branch 2>/dev/null | grep "*" | tr -d "* ");\
 PS1="\[$(tput bold)\]\[\033[38;5;13m\]\u\[$(tput sgr0)\]\[\033[38;5;14m\] /\W/ \[$(tput sgr0)\]\[\033[38;5;11m\]$GIT_BRANCH>\[$(tput sgr0)\]";'
+
+#
+# Set editor
+#
+export EDITOR=vim
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -95,7 +100,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -133,3 +138,9 @@ if [ -n "$SSH_CLIENT" ]; then
 fi
 
 
+
+# The next line updates PATH for the Google Cloud SDK.
+#if [ -f '/home/alexoregan/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/alexoregan/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+#if [ -f '/home/alexoregan/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/alexoregan/Downloads/google-cloud-sdk/completion.bash.inc'; fi
