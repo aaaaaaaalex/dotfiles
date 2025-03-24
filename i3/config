@@ -12,7 +12,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font agave\ Nerd\ Font\ Mono 8
+#font agave\ Nerd\ Font\ Mono 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -25,9 +25,12 @@ font agave\ Nerd\ Font\ Mono 8
 # screen before suspend. Use loginctl lock-session to lock your screen.
 Exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# change focus
+bindsym $mod+l loginctl lock-session
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-# exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -36,7 +39,7 @@ floating_modifier $mod
 bindsym $mod+Return exec st
 
 # start browser session
-bindsym $mod+b exec brave-browser
+bindsym $mod+b exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -47,26 +50,15 @@ bindsym $mod+d exec "dmenu_run -nf '#424141' -nb '#ffffff' -sb '#5bbad9' -sf '#4
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+ 
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -82,9 +74,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -102,11 +94,6 @@ mode "move" {
   bindsym Down  move down
   bindsym Up    move up
   bindsym Right move right
-
-  bindsym h     move left
-  bindsym j     move down
-  bindsym k     move up
-  bindsym l     move right
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -162,22 +149,19 @@ bindsym XF86AudioNext exec mediactl Next
 bindsym XF86AudioPrev exec mediactl Previous
 bindsym XF86AudioStop exec mediactl Stop
 
-# Use pactl to adjust volume in PulseAudio.
+# use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-# repeatedly and explicitly explain to PulseAudio what the word fucKING DEFAULT MEANS YOU STUPID CUNT
-exec pakick
-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -212,7 +196,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 #bar {
 #	workspace_buttons no
-#        status_command i3status	
+#	status_command i3status	
 #	colors {
 #		background #424141
 #		statusline #FFFFFF
@@ -225,7 +209,9 @@ bindsym $mod+r mode "resize"
 #		binding_mode       #2F343A #F5F383 #424141
 #	}
 #}
-
+bar {
+	status_command i3status
+}
 
 default_border pixel 4
 default_floating_border pixel 4
@@ -250,14 +236,17 @@ gaps inner 20
 for_window [title="i3status"] border none, floating enable, resize set 1360 1, move position 600 1410
 
 # compton
-exec_always --no-startup-id compton -b --config /home/alexoregan/.config/compton/config
+exec_always --no-startup-id picom -b --vsync
 
 
 # set wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-max --image-bg=#ffffff ~/Pictures/desktop.jpg
+exec_always --no-startup-id feh --no-fehbg --bg-max --image-bg=#ffffff ~/Pictures/wallpaper.jpg
+
+# ensure correct monitor mode
+exec_always --no-startup-id xrandr --output DP-0 --mode 2560x1440 --rate 144.00 --preferred
 
 # vim scratchpad with super+enter (terminal moved to super+t)
 for_window [class="_vim-scratchpad"] floating enable
 for_window [class="_vim-scratchpad"] resize 600 400
 for_window [class="_vim-scratchpad"] move position mouse
-bindsym $mod+c exec st -c _vim-scratchpad -e scratchpad
+bindsym $mod+s exec st -c _vim-scratchpad -e scratchpad
