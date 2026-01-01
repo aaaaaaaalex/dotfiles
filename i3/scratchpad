@@ -1,8 +1,0 @@
-#!/bin/bash
-# start vim and insert the contents of the current X selection
-# if the vim buffer is saved, its contents will be copied to clipboard
-vim -c startinsert -s <(xsel) ~/.vimscratchpad
-if [ -e ~/.vimscratchpad ]; then
-	xsel -i --clipboard --trim 2>/dev/null < ~/.vimscratchpad
-	rm ~/.vimscratchpad
-fi
