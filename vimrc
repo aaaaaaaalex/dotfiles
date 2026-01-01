@@ -1,3 +1,3 @@
-colorscheme koehler
+colorscheme redish
 set number
 set cursorline

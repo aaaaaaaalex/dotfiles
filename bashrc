@@ -10,13 +10,109 @@ case $- in
 esac
 
 # user functions
-export PATH=$PATH:/home/$USER/Repositories/dotfiles/bin:/usr/local/go/bin
+export PATH=$PATH:/home/$USER/Repositories/dotfiles/bin:/usr/local/go/bin:$HOME/.local/bin
+
+#
+# Set some vars to ASCII
+#
+ASCII_BLOCK=█
+
+#
+# ANSI SEQUENCES
+#
+
+ANSICTRL='\033['
+ANSICTRLEND='m'
+ANSICTRLF='\033[%sm'
+
+set_ansi(){ printf $ANSICTRLF $1; }
+
+ANSIRESET=0
+ANSIBOLD=1
+ANSIBOLDOFF=21
+ANSIFAINT=2
+ANSIWEIGHTNORMAL=22
+ANSIITALIC=3
+ANSINOITALIC=23
+ANSIUNDERLINE=4
+ANSIDOUBLEUNDERLINE=21
+ANSINOUNDERLINE=24
+ANSISLOWBLINK=5
+ANSIFASTBLINK=6
+ANSINOBLINK=25
+ANSIINVERT=7
+ANSINOINVERT=27
+ANSICONCEAL=8
+ANSIREVEAL=28; ANSINOCONCEAL=28
+ANSISTRIKE=9
+ANSINOSTRIKE=29
+
+## 4-BIT COLOUR CODES
+FGBLACK=30
+FGRED=31
+FGGREEN=32
+FGYELLOW=33
+FGBLUE=34
+FGMAGENTA=35
+FGCYAN=36
+FGWHITE=37
+FGRGB=38
+FGDEFAULT=39
+
+BGBLACK=40
+BGRED=41
+BGGREEN=42
+BGYELLOW=43
+BGBLUE=44
+BGMAGENTA=45
+BGCYAN=46
+BGWHITE=47
+
+FGBRIGHTBLACK=90
+FGBRIGHTRED=91
+FGBRIGHTGREEN=92
+FGBRIGHTYELLOW=93
+FGBRIGHTBLUE=94
+FGBRIGHTMAGENTA=95
+FGBRIGHTCYAN=96
+FGBRIGHTWHITE=97
+
+BGBRIGHTBLACK=100
+BGBRIGHTRED=101
+BGBRIGHTGREEN=102
+BGBRIGHTYELLOW=103
+BGBRIGHTBLUE=104
+BGBRIGHTMAGENTA=105
+BGBRIGHTCYAN=106
+BGBRIGHTWHITE=107
+
+# THEME
+UNAME_STYLE="$ANSIBOLD"
+PWD_STYLE="$ANSIFAINT"
+GITBRANCH_GLOBAL_STYLE=$ANSIITALIC
+GITBRANCH_FAIL_STYLE=$ANSISTRIKE
+GITBRANCH_SUCCESS_STYLE=$ANSINOSTRIKE
 
 #
 # CUSTOM PROMPT
 #
-PROMPT_COMMAND='GIT_BRANCH=$(git branch 2>/dev/null | grep "*" | tr -d "* ");\
-PS1="\[$(tput bold)\]\[\033[38;5;13m\]\u\[$(tput sgr0)\]\[\033[38;5;14m\] /\W/ \[$(tput sgr0)\]\[\033[38;5;11m\]$GIT_BRANCH>\[$(tput sgr0)\]";'
+
+gitbranch(){
+	success_style=$(set_ansi "$GITBRANCH_GLOBAL_STYLE;$GITBRANCH_SUCCESS_STYLE")
+	fail_style=$(set_ansi "$GITBRANCH_GLOBAL_STYLE;$GITBRANCH_FAIL_STYLE")
+	reset_style=$(set_ansi "$ANSIRESET")
+	branch=$(git branch --show-current 2>/dev/null || printf "gitbranch")
+	style_to_use="$success_style"
+	if [[ "$branch" == "gitbranch" ]]; then
+		style_to_use="$fail_style"
+	fi
+	printf "${style_to_use}${branch}${reset_style}"
+	return 0
+}
+
+PROMPT_COMMAND='\
+	GIT_BRANCH=$(gitbranch) \
+	PS1="\u  \W/ ${GIT_BRANCH} > "'
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -102,6 +198,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# vim4eva
+EDITOR=vim
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -132,4 +231,6 @@ if [ -n "$SSH_CLIENT" ]; then
   export DISPLAY=$sshclientip:0 PULSE_SERVER=tcp:$sshclientip:4713
 fi
 
-
+# Welcome msg
+df --block-size=GB /
+printcolour
